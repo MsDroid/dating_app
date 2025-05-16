@@ -1,5 +1,6 @@
 import 'package:bloc_flutter/ui/auth/register_steps/take_dob.dart';
 import 'package:bloc_flutter/ui/auth/register_steps/take_password.dart';
+import 'package:bloc_flutter/ui/auth/register_steps/take_photos.dart';
 import 'package:bloc_flutter/utils/colors/app_colors.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,7 @@ class _RegisterStepsState extends State<RegisterSteps> {
       body: Column(
         children: [
           EasyStepper(
+            enableStepTapping: false,
             activeStep: activeStep,
             lineStyle: const LineStyle(
               activeLineColor: AppColors.darkColor,
@@ -178,7 +180,9 @@ class _RegisterStepsState extends State<RegisterSteps> {
                     ? TakeDateOfBirth(continueBtn: continueBtn)
                     : activeStep == 2
                         ? TakePassword(continueBtn: continueBtn)
-                        : const SizedBox.shrink(),
+                        : activeStep == 3
+                            ? TakeProfilePhotos(continueBtn: continueBtn)
+                            : const SizedBox.shrink(),
           ),
         ],
       ),
